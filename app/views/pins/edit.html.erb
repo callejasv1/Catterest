@@ -1,0 +1,6 @@
+<h1>Editing Pin</h1>
+
+<%= render 'form', pin: @pin %>
+<%= image_tag(@pin.photo, :class => 'img-responsive') %>
+<%= link_to 'Show', @pin %> |
+<%= link_to 'Back', pins_path %>
