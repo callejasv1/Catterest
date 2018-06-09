@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pinturita</title>
+    <title>Catterest</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,37 +9,15 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/shared/style.css">
+
+
 
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
-             <div class="container-fluid">
-               <div class="navbar-header">
+  <%= render '/shared/navbar' %>
 
-                <!-- <a class="navbar-brand" href="#">Catterest</a> -->
-                 <%= link_to 'Catterest', welcome_index_path, class:'navbar-brand' %>
-               </div>
-
-               <form class="navbar-form navbar-left" role="search">
-                 <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Search">
-                 </div>
-                 <button type="submit" class="btn btn-default">Submit</button>
-               </form>
-
-               <div id="navbar" class="collapse navbar-collapse navbar-right">
-                 <ul class="nav navbar-nav">
-                   <li class="active">
-                     <li> <%= link_to 'Pins', pins_path %> </li>
-                 </ul>
-                 <button type="button" class="btn btn-default btn-lg">
-                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                 </button>
-               </div><!--/.nav-collapse -->
-
-             </div>
-           </nav>
 
     <%= yield %>
   </body>
