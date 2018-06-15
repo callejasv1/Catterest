@@ -1,0 +1,32 @@
+<ul class="nav navbar-nav navbar-right">
+  <%if user_signed_in? %>
+    <li class="dropdown">
+
+        <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown">
+        <img src="http://placehold.it/30x30" class="img-circle special-img"><b class="caret"></b></a>
+
+        <ul class="dropdown-menu">
+          <li><a href="#"><i class="fas fa-user"></i> Perfil</a></li>
+          <li class="divider"></li>
+        <!--  <li><a href="#"><i class="fas fa-sign-out-alt"></i> Sign-out</a></li> -->
+        <li>  <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          <% end %> </li>
+        </li>
+        </ul>
+
+
+    </li>
+  <%else%>
+    <li>
+      <%= link_to new_user_session_path do %>
+        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_user_registration_path do %>
+        <i class="fas fa-user-plus"></i> Registrarse
+      <% end %>
+    </li>
+  <%end%>
+</ul>
