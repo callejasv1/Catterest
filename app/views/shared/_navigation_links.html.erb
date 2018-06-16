@@ -1,0 +1,5 @@
+<%# add navigation links to this file %>
+<%= link_to 'Usuarios', "#", class: 'navbar-brand' %>
+<% if current_user.present? %>
+  <a href="#" class="navbar-brand" ><i class="fa fa-suitcase"></i> Proyectos</a>
+<% end %>

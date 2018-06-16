@@ -1,21 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<!-- Search Bar -->
-
-
-  <!-- End Search Bar -->
+<div class="container">
+  <h1>Mis Pins</h1>
 
   <% @pins.each do |pin| %>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="thumbnail">
         <%= pin.description %>
-
-
-    <%= image_tag(pin.photo, :class => 'img-responsive')%>
-
-
+        <%= image_tag(pin.photo, :class => 'img-responsive') %>
         <div class="buttons" style="margin-top:10px; margin-bottom:10px">
-          <%= link_to 'Like', likes_path(pin), :class => 'btn'%>
           <%= link_to 'Show', pin, :class => 'btn' %>
           <%= link_to 'Edit', edit_pin_path(pin), :class => 'btn' %>
           <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>

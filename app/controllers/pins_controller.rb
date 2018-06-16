@@ -1,10 +1,39 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index]
   # GET /pins
   # GET /pins.json
+
+
+  def search
+
+if params[:description]
+  @pins = Pin.where('description LIKE ?', "%#{params[:description]}%")
+else
+  @pins = Pin.all
+end
+end
+
+
   def index
     @pins = Pin.all
+  end
+
+  def likes
+  @user = current_user # before_action :authenticate_user, only: [:likes]
+  @pin = Pin.find(params[:id])
+  @user.like!(@pin)
+  redirect_back fallback_location: root_path, notice: "Liked this post successfully!"
+end
+
+  def mypins
+    @pins = current_user.pins
+  end
+
+  def pinsof
+    @user_id = params[:user_id]
+    @user = User.find(@user_id)
+    @pins = @user.pins
   end
 
   # GET /pins/1
@@ -25,7 +54,7 @@ class PinsController < ApplicationController
   # POST /pins.json
   def create
     @pin = Pin.new(pin_params)
-
+    @pin.user_id = current_user.id
     respond_to do |format|
       if @pin.save
         format.html { redirect_to @pin, notice: 'Pin was successfully created.' }
