@@ -12,5 +12,11 @@
   <%= @pin.description %>
 </p>
 
+<p>
+  <strong>Usuario:</strong>
+  <%= User.find(@pin.user_id).email %>
+</p>
+
 <%= link_to 'Edit', edit_pin_path(@pin) %> |
-<%= link_to 'Back', pins_path %>
+<%= link_to 'Back', pins_path %> | <br>
+<%= link_to "Mas pins del mismo usuario", pinsof_path(@pin.user) %>
