@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <!-- Search Bar -->
+<p align="center">
+ <a href= "<%= new_pin_path =%>" class="btn btn-primary btn-lg" role="button">Nuevo Pin</a>
 
 
   <!-- End Search Bar -->
@@ -8,22 +10,34 @@
   <% @pins.each do |pin| %>
     <div class="col-md-4">
       <div class="thumbnail">
-        <%= pin.description %>
+        <p align="center">
+       <%= pin.description %></p>
 
 
     <%= image_tag(pin.photo, :class => 'img-responsive')%>
 
 
-        <div class="buttons" style="margin-top:10px; margin-bottom:10px">
-          <%= link_to 'Like', likes_path(pin), :class => 'btn'%>
-          <%= link_to 'Show', pin, :class => 'btn' %>
-          <%= link_to 'Edit', edit_pin_path(pin), :class => 'btn' %>
-          <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+        <div align="center" class="buttons" style="margin-top:10px; margin-bottom:10px">
+
+<% if user_signed_in? %>
+
+      <% if current_user.likes?(pin) %>
+      <%= link_to '<i class="glyphicon glyphicon-thumbs-down"></i>'.html_safe, unlikes_path(pin), :class => 'btn'%>
+
+      <%else %>
+              <%= link_to '<i class="glyphicon glyphicon-thumbs-up"></i>'.html_safe, likes_path(pin), :class => 'btn'%>
+          <% end %>
+          <%else %>
+          <% end %>
+
+
+          <%= link_to 'Mostrar', pin, :class => 'btn' %>
+          <%= link_to 'Editar', edit_pin_path(pin), :class => 'btn' %>
+          <%= link_to 'Borrar', pin, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
         </div>
       </div>
     </div>
   <% end %>
 
   <br>
-  <%= link_to 'New Pin', new_pin_path %>
 </div>

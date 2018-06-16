@@ -23,7 +23,14 @@ end
   @user = current_user # before_action :authenticate_user, only: [:likes]
   @pin = Pin.find(params[:id])
   @user.like!(@pin)
-  redirect_back fallback_location: root_path, notice: "Liked this post successfully!"
+  redirect_back fallback_location: root_path, notice: "Te gusta este pin!"
+end
+
+def unlikes
+@user = current_user # before_action :authenticate_user, only: [:unlikes]
+@pin = Pin.find(params[:id])
+@user.unlike!(@pin)
+redirect_back fallback_location: root_path, notice: "Ya no te gusta este pin!"
 end
 
   def mypins
