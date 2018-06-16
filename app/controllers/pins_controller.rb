@@ -7,6 +7,13 @@ class PinsController < ApplicationController
     @pins = Pin.all
   end
 
+  def likes
+  @user = current_user # before_action :authenticate_user, only: [:likes]
+  @pin = Pin.find(params[:id])
+  @user.like!(@pin)
+  redirect_back fallback_location: root_path, notice: "Liked this post successfully!"
+end
+
   def mypins
     @pins = current_user.pins
   end

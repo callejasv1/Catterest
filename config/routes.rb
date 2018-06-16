@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get 'mypins' => 'pins#mypins'
 
   get 'pinsof/:user_id' => 'pins#pinsof', :as => "pinsof"
+  get 'pins/:id/likes', to: 'pins#likes', as: :likes
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
