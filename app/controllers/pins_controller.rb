@@ -3,6 +3,18 @@ class PinsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   # GET /pins
   # GET /pins.json
+
+
+  def search
+
+if params[:description]
+  @pins = Pin.where('description LIKE ?', "%#{params[:description]}%")
+else
+  @pins = Pin.all
+end
+end
+
+
   def index
     @pins = Pin.all
   end
